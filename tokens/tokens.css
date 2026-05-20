@@ -1,0 +1,181 @@
+/* Kalon Partners — Design Tokens
+   Source of truth: design.md
+   Usage: @import './tokens/tokens.css'; in your root CSS */
+
+:root {
+  /* ─── Colors — Brand Core ─────────────────────────────── */
+  --kalon-color-navy:          #1C3557;
+  --kalon-color-navy-deep:     #0F1F35;
+  --kalon-color-navy-light:    #EBF1F8;
+  --kalon-color-on-navy:       #FFFFFF;
+
+  /* ─── Colors — Accent Principal ──────────────────────── */
+  --kalon-color-accent-green:       #1E7A52; /* CTA sur fond clair, logo */
+  --kalon-color-accent-green-vivid: #2ecc9b; /* CTA sur fond sombre uniquement */
+  --kalon-color-on-accent:          #FFFFFF;
+  --kalon-color-on-accent-vivid:    #0F1F35; /* IMPORTANT: jamais blanc sur vivid */
+
+  /* ─── Colors — Verticales Métier ─────────────────────── */
+  --kalon-color-vert:         #2ecc9b;
+  --kalon-color-vert-dark:    #1E7A52;
+  --kalon-color-teal:         #0ea5a0;
+  --kalon-color-teal-dark:    #0a8a86;
+  --kalon-color-bleu:         #4DA3FF;
+  --kalon-color-bleu-dark:    #2f85dc;
+  --kalon-color-violet:       #7C3AED;
+  --kalon-color-violet-dark:  #6D28D9;
+
+  /* ─── Colors — Surface & Neutral ─────────────────────── */
+  --kalon-color-surface:        #FFFFFF;
+  --kalon-color-surface-soft:   #F4F7FA;
+  --kalon-color-border:         #D9E3EE;
+  --kalon-color-text:           #0F1F35;
+  --kalon-color-text-muted:     #4A637E;
+  --kalon-color-text-disabled:  #94A3B8;
+
+  /* ─── Colors — Semantic / Status ─────────────────────── */
+  --kalon-color-success: #1E7A52;
+  --kalon-color-warning: #D97706;
+  --kalon-color-error:   #DC2626;
+  --kalon-color-info:    #2f85dc;
+
+  /* ─── Typography — Familles ───────────────────────────── */
+  --kalon-font-display: 'Barlow Condensed', system-ui, sans-serif;
+  --kalon-font-body:    'Inter', system-ui, sans-serif;
+
+  /* ─── Typography — Tailles ────────────────────────────── */
+  --kalon-text-display-xl: 72px;
+  --kalon-text-display-l:  56px;
+  --kalon-text-headline-l: 40px;
+  --kalon-text-headline-m: 32px;
+  --kalon-text-headline-s: 24px;
+  --kalon-text-title-l:    20px;
+  --kalon-text-title-m:    16px;
+  --kalon-text-body-l:     18px;
+  --kalon-text-body-m:     16px;
+  --kalon-text-body-s:     14px;
+  --kalon-text-label-l:    14px;
+  --kalon-text-label-m:    12px;
+  --kalon-text-label-s:    11px;
+
+  /* ─── Typography — Line Heights ───────────────────────── */
+  --kalon-leading-display-xl: 76px;
+  --kalon-leading-display-l:  60px;
+  --kalon-leading-headline-l: 48px;
+  --kalon-leading-headline-m: 40px;
+  --kalon-leading-headline-s: 32px;
+  --kalon-leading-title-l:    28px;
+  --kalon-leading-title-m:    24px;
+  --kalon-leading-body-l:     28px;
+  --kalon-leading-body-m:     24px;
+  --kalon-leading-body-s:     20px;
+  --kalon-leading-label-l:    20px;
+  --kalon-leading-label-m:    16px;
+  --kalon-leading-label-s:    14px;
+
+  /* ─── Typography — Weights ────────────────────────────── */
+  --kalon-weight-regular: 400;
+  --kalon-weight-medium:  500;
+  --kalon-weight-semibold: 600;
+  --kalon-weight-bold:    700;
+
+  /* ─── Shape / Border Radius ───────────────────────────── */
+  --kalon-radius-none:  0px;
+  --kalon-radius-sm:    4px;
+  --kalon-radius-md:    8px;
+  --kalon-radius-lg:    12px;
+  --kalon-radius-xl:    16px;
+  --kalon-radius-badge: 6px;
+  --kalon-radius-full:  9999px;
+
+  /* ─── Elevation / Box Shadows ─────────────────────────── */
+  --kalon-elevation-0: none;
+  --kalon-elevation-1: 0 1px 3px rgb(15 31 53 / .08), 0 1px 2px rgb(15 31 53 / .06);
+  --kalon-elevation-2: 0 4px 8px rgb(15 31 53 / .10), 0 2px 4px rgb(15 31 53 / .06);
+  --kalon-elevation-3: 0 8px 24px rgb(15 31 53 / .12), 0 4px 8px rgb(15 31 53 / .08);
+  --kalon-elevation-4: 0 16px 40px rgb(15 31 53 / .16), 0 8px 16px rgb(15 31 53 / .10);
+
+  /* ─── Spacing (base 8px) ──────────────────────────────── */
+  --kalon-space-1:  4px;
+  --kalon-space-2:  8px;
+  --kalon-space-3:  12px;
+  --kalon-space-4:  16px;
+  --kalon-space-5:  24px;
+  --kalon-space-6:  32px;
+  --kalon-space-8:  48px;
+  --kalon-space-10: 64px;
+  --kalon-space-12: 80px;
+  --kalon-space-16: 128px;
+
+  /* ─── Layout ──────────────────────────────────────────── */
+  --kalon-container-max: 1280px;
+  --kalon-container-padding-mobile:  24px;
+  --kalon-container-padding-desktop: 48px;
+
+  /* ─── Motion ──────────────────────────────────────────── */
+  --kalon-ease-standard: cubic-bezier(0.2, 0, 0, 1);
+  --kalon-ease-enter:    cubic-bezier(0, 0, 0.2, 1);
+  --kalon-ease-exit:     cubic-bezier(0.4, 0, 1, 1);
+  --kalon-ease-hover:    cubic-bezier(0.2, 0, 0, 1);
+
+  --kalon-duration-hover:    150ms;
+  --kalon-duration-enter:    250ms;
+  --kalon-duration-standard: 300ms;
+  --kalon-duration-exit:     200ms;
+
+  /* ─── Z-index ─────────────────────────────────────────── */
+  --kalon-z-base:    0;
+  --kalon-z-card:    10;
+  --kalon-z-dropdown: 100;
+  --kalon-z-sticky:  200;
+  --kalon-z-banner:  900;
+  --kalon-z-header:  1000;
+  --kalon-z-fab:     1000;
+  --kalon-z-drawer:  1100;
+  --kalon-z-modal:   1200;
+  --kalon-z-toast:   1300;
+}
+
+/* ─── Accessibilité : désactiver les animations ───────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ─── Classes utilitaires de base ─────────────────────────── */
+.kalon-container {
+  width: 100%;
+  max-width: var(--kalon-container-max);
+  margin-inline: auto;
+  padding-inline: var(--kalon-container-padding-mobile);
+}
+
+@media (min-width: 1024px) {
+  .kalon-container {
+    padding-inline: var(--kalon-container-padding-desktop);
+  }
+}
+
+.kalon-eyebrow {
+  font-family: var(--kalon-font-body);
+  font-size: var(--kalon-text-label-s);
+  font-weight: var(--kalon-weight-semibold);
+  line-height: var(--kalon-leading-label-s);
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--kalon-color-accent-green-vivid);
+}
+
+.kalon-sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
