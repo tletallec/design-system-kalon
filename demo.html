@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Kalon Partners — Design System Demo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./tokens/tokens.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--kalon-font-body);
+      background: var(--kalon-color-surface-soft);
+      color: var(--kalon-color-text);
+      line-height: 1.5;
+    }
+
+    /* ── Layout ── */
+    .page-header {
+      background: var(--kalon-color-navy-deep);
+      padding: 48px var(--kalon-container-padding-desktop);
+      display: flex;
+      align-items: center;
+      gap: 24px;
+    }
+    .page-header-logo {
+      font-family: var(--kalon-font-display);
+      font-size: 40px;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.5px;
+    }
+    .page-header-logo span {
+      display: inline-block;
+      font-family: var(--kalon-font-body);
+      font-size: 14px;
+      font-style: italic;
+      font-weight: 500;
+      background: var(--kalon-color-accent-green);
+      color: #fff;
+      padding: 2px 10px;
+      border-radius: var(--kalon-radius-badge);
+      margin-left: 8px;
+      vertical-align: middle;
+      letter-spacing: 0;
+    }
+    .page-header-meta {
+      margin-left: auto;
+      font-size: 12px;
+      color: rgba(255,255,255,.4);
+      font-family: var(--kalon-font-body);
+    }
+
+    .container {
+      max-width: var(--kalon-container-max);
+      margin: 0 auto;
+      padding: 64px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 80px;
+    }
+
+    /* ── Section ── */
+    .section { display: flex; flex-direction: column; gap: 32px; }
+    .section-title {
+      font-family: var(--kalon-font-display);
+      font-size: 32px;
+      font-weight: 600;
+      color: var(--kalon-color-navy);
+      padding-bottom: 12px;
+      border-bottom: 2px solid var(--kalon-color-border);
+    }
+    .section-label {
+      font-family: var(--kalon-font-body);
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--kalon-color-accent-green-vivid);
+      margin-bottom: -20px;
+    }
+    .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-start; }
+    .col { display: flex; flex-direction: column; gap: 12px; }
+    .group-title {
+      font-family: var(--kalon-font-body);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      color: var(--kalon-color-text-muted);
+      margin-bottom: 4px;
+    }
+
+    /* ── Colors ── */
+    .swatch-grid { display: flex; flex-wrap: wrap; gap: 12px; }
+    .swatch {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      min-width: 100px;
+    }
+    .swatch-color {
+      height: 64px;
+      border-radius: var(--kalon-radius-md);
+      border: 1px solid rgba(0,0,0,.07);
+    }
+    .swatch-name {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--kalon-color-text);
+    }
+    .swatch-hex {
+      font-size: 11px;
+      color: var(--kalon-color-text-muted);
+      font-family: 'Courier New', monospace;
+    }
+
+    /* ── Typography ── */
+    .type-row {
+      display: flex;
+      align-items: baseline;
+      gap: 24px;
+      padding: 16px 0;
+      border-bottom: 1px solid var(--kalon-color-border);
+    }
+    .type-meta {
+      font-size: 11px;
+      color: var(--kalon-color-text-muted);
+      white-space: nowrap;
+      min-width: 140px;
+      font-family: 'Courier New', monospace;
+    }
+    .type-sample { flex: 1; }
+
+    /* ── Elevation ── */
+    .elevation-grid { display: flex; gap: 24px; flex-wrap: wrap; }
+    .elevation-box {
+      width: 120px;
+      height: 80px;
+      background: #fff;
+      border-radius: var(--kalon-radius-lg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--kalon-color-navy);
+    }
+    .elevation-sub { font-size: 10px; font-weight: 400; color: var(--kalon-color-text-muted); }
+
+    /* ── Radius ── */
+    .radius-grid { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-end; }
+    .radius-box {
+      background: var(--kalon-color-navy-light);
+      border: 2px solid var(--kalon-color-navy);
+      width: 80px;
+      height: 80px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .radius-label { font-size: 11px; font-weight: 600; color: var(--kalon-color-navy); }
+    .radius-value { font-size: 10px; color: var(--kalon-color-text-muted); }
+
+    /* ── Buttons ── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      height: 44px;
+      padding: 0 24px;
+      border-radius: var(--kalon-radius-full);
+      font-family: var(--kalon-font-body);
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all var(--kalon-duration-hover) var(--kalon-ease-hover);
+      outline: none;
+    }
+    .btn:focus-visible { outline: 2px solid var(--kalon-color-accent-green-vivid); outline-offset: 2px; }
+    .btn:active { transform: scale(0.98); }
+
+    .btn-navy    { background: var(--kalon-color-navy); color: #fff; }
+    .btn-navy:hover { background: var(--kalon-color-navy-deep); }
+
+    .btn-emerald { background: var(--kalon-color-accent-green); color: #fff; }
+    .btn-emerald:hover { opacity: .9; }
+
+    .btn-vivid   { background: var(--kalon-color-accent-green-vivid); color: var(--kalon-color-navy-deep); }
+    .btn-vivid:hover { opacity: .9; }
+
+    .btn-outlined { background: transparent; color: var(--kalon-color-navy); border: 1.5px solid var(--kalon-color-navy); }
+    .btn-outlined:hover { background: var(--kalon-color-navy-light); }
+
+    .btn-ghost { background: transparent; color: var(--kalon-color-navy); }
+    .btn-ghost:hover { background: var(--kalon-color-navy-light); }
+
+    .btn-outlined-white { background: transparent; color: #fff; border: 1.5px solid #fff; }
+    .btn-outlined-white:hover { background: rgba(255,255,255,.1); }
+
+    .btn-sm { height: 36px; padding: 0 16px; font-size: 12px; }
+    .btn-lg { height: 52px; padding: 0 32px; font-size: 16px; }
+    .btn:disabled { opacity: .38; cursor: not-allowed; pointer-events: none; }
+
+    .dark-bg {
+      background: var(--kalon-color-navy-deep);
+      border-radius: var(--kalon-radius-xl);
+      padding: 32px;
+    }
+
+    /* ── Cards ── */
+    .card {
+      background: #fff;
+      border-radius: var(--kalon-radius-lg);
+      box-shadow: var(--kalon-elevation-1);
+      padding: 24px;
+      transition: box-shadow var(--kalon-duration-hover) var(--kalon-ease-hover);
+    }
+    .card:hover { box-shadow: var(--kalon-elevation-2); }
+    .card-title {
+      font-family: var(--kalon-font-display);
+      font-size: 24px;
+      font-weight: 600;
+      color: var(--kalon-color-navy);
+      margin-bottom: 8px;
+    }
+    .card-body { font-size: 16px; color: var(--kalon-color-text-muted); line-height: 1.6; }
+    .card-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 20px; }
+
+    .card-metric {
+      background: var(--kalon-color-surface-soft);
+      border-radius: var(--kalon-radius-lg);
+      padding: 24px;
+    }
+    .card-metric-value {
+      font-family: var(--kalon-font-display);
+      font-size: 56px;
+      font-weight: 700;
+      color: var(--kalon-color-navy);
+      line-height: 1;
+    }
+    .card-metric-label { font-size: 14px; color: var(--kalon-color-text-muted); margin-top: 8px; }
+    .card-metric-source { font-size: 11px; color: var(--kalon-color-text-disabled); margin-top: 4px; }
+
+    .card-dark {
+      background: var(--kalon-color-navy);
+      border-radius: var(--kalon-radius-lg);
+      padding: 24px;
+      border: 1px solid rgba(255,255,255,.1);
+    }
+    .card-dark .card-title { color: #fff; }
+    .card-dark .card-body { color: rgba(255,255,255,.6); }
+
+    /* ── Verticale Cards ── */
+    .verticale-icon {
+      width: 40px; height: 40px;
+      border-radius: var(--kalon-radius-md);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 12px;
+    }
+    .verticale-icon svg { width: 20px; height: 20px; }
+
+    /* ── Badges & Tags ── */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: var(--kalon-radius-badge);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 16px;
+    }
+    .badge-vert   { background: rgba(46,204,155,.15); color: var(--kalon-color-vert-dark); }
+    .badge-teal   { background: rgba(14,165,160,.15); color: var(--kalon-color-teal-dark); }
+    .badge-bleu   { background: rgba(77,163,255,.15); color: var(--kalon-color-bleu-dark); }
+    .badge-violet { background: rgba(124,58,237,.15); color: var(--kalon-color-violet-dark); }
+    .badge-success { background: rgba(30,122,82,.12); color: var(--kalon-color-success); }
+    .badge-warning { background: rgba(217,119,6,.12); color: var(--kalon-color-warning); }
+    .badge-error   { background: rgba(220,38,38,.12); color: var(--kalon-color-error); }
+    .badge-neutral { background: var(--kalon-color-surface-soft); color: var(--kalon-color-text-muted); }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 12px;
+      border-radius: var(--kalon-radius-full);
+      border: 1.5px solid var(--kalon-color-border);
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--kalon-color-navy);
+      background: transparent;
+      cursor: pointer;
+      transition: all var(--kalon-duration-hover) var(--kalon-ease-hover);
+    }
+    .tag:hover { background: var(--kalon-color-navy-light); border-color: var(--kalon-color-navy); }
+    .tag.active { background: var(--kalon-color-navy); color: #fff; border-color: var(--kalon-color-navy); }
+
+    /* ── Inputs ── */
+    .field { display: flex; flex-direction: column; gap: 6px; }
+    .field-label { font-size: 12px; font-weight: 500; color: var(--kalon-color-text-muted); }
+    .input {
+      height: 48px;
+      padding: 0 16px;
+      border-radius: var(--kalon-radius-md);
+      border: 1.5px solid var(--kalon-color-border);
+      background: var(--kalon-color-surface-soft);
+      font-family: var(--kalon-font-body);
+      font-size: 16px;
+      color: var(--kalon-color-text);
+      outline: none;
+      transition: all var(--kalon-duration-hover) var(--kalon-ease-hover);
+      width: 100%;
+    }
+    .input:focus { border-color: var(--kalon-color-navy); background: #fff; box-shadow: 0 0 0 3px rgba(28,53,87,.12); }
+    .input.error { border-color: var(--kalon-color-error); }
+    .input.error:focus { box-shadow: 0 0 0 3px rgba(220,38,38,.12); }
+    .input:disabled { opacity: .4; cursor: not-allowed; }
+    .field-helper { font-size: 13px; color: var(--kalon-color-text-muted); }
+    .field-error  { font-size: 13px; color: var(--kalon-color-error); }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+
+    /* ── Feedback ── */
+    .toast {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      border-radius: var(--kalon-radius-lg);
+      color: #fff;
+      max-width: 420px;
+      box-shadow: var(--kalon-elevation-4);
+    }
+    .toast svg { width: 20px; height: 20px; flex-shrink: 0; }
+    .toast-msg { font-size: 14px; flex: 1; }
+    .toast-success { background: var(--kalon-color-success); }
+    .toast-error   { background: var(--kalon-color-error); }
+    .toast-info    { background: var(--kalon-color-navy); }
+    .toast-warning { background: var(--kalon-color-warning); }
+
+    .progress-track {
+      width: 100%;
+      height: 4px;
+      background: var(--kalon-color-border);
+      border-radius: var(--kalon-radius-full);
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--kalon-color-accent-green);
+      border-radius: var(--kalon-radius-full);
+      transition: width var(--kalon-duration-standard) var(--kalon-ease-standard);
+    }
+
+    .skeleton {
+      background: linear-gradient(90deg, var(--kalon-color-border) 25%, var(--kalon-color-surface-soft) 50%, var(--kalon-color-border) 75%);
+      background-size: 1000px 100%;
+      animation: shimmer 1.5s infinite linear;
+      border-radius: var(--kalon-radius-md);
+    }
+    @keyframes shimmer {
+      0%   { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+
+    /* ── Spacing ── */
+    .spacing-grid { display: flex; gap: 16px; flex-wrap: wrap; align-items: flex-end; }
+    .spacing-item { display: flex; flex-direction: column; align-items: center; gap: 6px; }
+    .spacing-bar { background: var(--kalon-color-navy); border-radius: 2px; width: 8px; }
+    .spacing-token { font-size: 10px; font-weight: 600; color: var(--kalon-color-navy); font-family: 'Courier New', monospace; }
+    .spacing-val   { font-size: 10px; color: var(--kalon-color-text-muted); }
+
+    /* ── Page Sections Nav ── */
+    .toc {
+      position: sticky;
+      top: 24px;
+      background: #fff;
+      border-radius: var(--kalon-radius-lg);
+      padding: 20px;
+      box-shadow: var(--kalon-elevation-1);
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .toc a {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--kalon-color-text-muted);
+      text-decoration: none;
+      padding: 4px 8px;
+      border-radius: var(--kalon-radius-md);
+      transition: all var(--kalon-duration-hover) var(--kalon-ease-hover);
+    }
+    .toc a:hover { background: var(--kalon-color-navy-light); color: var(--kalon-color-navy); }
+    .layout-with-toc { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: start; }
+  </style>
+</head>
+<body>
+
+<!-- ── Header ── -->
+<header class="page-header">
+  <div class="page-header-logo">
+    KALON<span>partners</span>
+  </div>
+  <div class="page-header-meta">Design System — v1.0</div>
+</header>
+
+<div style="max-width:1280px;margin:0 auto;padding:48px 48px 0;">
+  <div class="layout-with-toc">
+
+    <!-- ── Table of Contents ── -->
+    <nav class="toc" aria-label="Sections">
+      <p style="font-size:11px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--kalon-color-text-disabled);margin-bottom:4px;">Navigation</p>
+      <a href="#couleurs">Couleurs</a>
+      <a href="#typographie">Typographie</a>
+      <a href="#formes">Formes & Ombres</a>
+      <a href="#espacement">Espacement</a>
+      <a href="#boutons">Boutons</a>
+      <a href="#cartes">Cartes</a>
+      <a href="#badges">Badges & Tags</a>
+      <a href="#formulaires">Formulaires</a>
+      <a href="#feedback">Feedback</a>
+    </nav>
+
+    <!-- ── Main Content ── -->
+    <main style="display:flex;flex-direction:column;gap:80px;padding-bottom:80px;">
+
+      <!-- ═══ COULEURS ═══ -->
+      <section class="section" id="couleurs">
+        <p class="section-label">Tokens</p>
+        <h2 class="section-title">Couleurs</h2>
+
+        <div>
+          <p class="group-title">Brand Core</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#1C3557;"></div>
+              <div class="swatch-name">Navy</div>
+              <div class="swatch-hex">#1C3557</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#0F1F35;"></div>
+              <div class="swatch-name">Navy Deep</div>
+              <div class="swatch-hex">#0F1F35</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#EBF1F8;border:1px solid #D9E3EE;"></div>
+              <div class="swatch-name">Navy Light</div>
+              <div class="swatch-hex">#EBF1F8</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Accent Principal</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#1E7A52;"></div>
+              <div class="swatch-name">Emerald</div>
+              <div class="swatch-hex">#1E7A52</div>
+              <div class="swatch-hex" style="color:#94A3B8;">CTA fond clair</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#2ecc9b;"></div>
+              <div class="swatch-name">Emerald Vivid</div>
+              <div class="swatch-hex">#2ecc9b</div>
+              <div class="swatch-hex" style="color:#94A3B8;">CTA fond sombre</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Verticales Métier</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#2ecc9b;"></div>
+              <div class="swatch-name">Vert</div>
+              <div class="swatch-hex">#2ecc9b</div>
+              <div class="swatch-hex" style="color:#94A3B8;">Associations</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#0ea5a0;"></div>
+              <div class="swatch-name">Teal</div>
+              <div class="swatch-hex">#0ea5a0</div>
+              <div class="swatch-hex" style="color:#94A3B8;">Formations</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#4DA3FF;"></div>
+              <div class="swatch-name">Bleu</div>
+              <div class="swatch-hex">#4DA3FF</div>
+              <div class="swatch-hex" style="color:#94A3B8;">Entreprises</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#7C3AED;"></div>
+              <div class="swatch-name">Violet</div>
+              <div class="swatch-hex">#7C3AED</div>
+              <div class="swatch-hex" style="color:#94A3B8;">Innovation</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Surface & Neutral</p>
+          <div class="swatch-grid">
+            <div class="swatch">
+              <div class="swatch-color" style="background:#FFFFFF;border:1px solid #D9E3EE;"></div>
+              <div class="swatch-name">Surface</div>
+              <div class="swatch-hex">#FFFFFF</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#F4F7FA;border:1px solid #D9E3EE;"></div>
+              <div class="swatch-name">Surface Soft</div>
+              <div class="swatch-hex">#F4F7FA</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#D9E3EE;"></div>
+              <div class="swatch-name">Border</div>
+              <div class="swatch-hex">#D9E3EE</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#4A637E;"></div>
+              <div class="swatch-name">Text Muted</div>
+              <div class="swatch-hex">#4A637E</div>
+            </div>
+            <div class="swatch">
+              <div class="swatch-color" style="background:#94A3B8;"></div>
+              <div class="swatch-name">Text Disabled</div>
+              <div class="swatch-hex">#94A3B8</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contrast check -->
+        <div style="background:#fff;border-radius:var(--kalon-radius-lg);padding:20px;border:1px solid var(--kalon-color-border);">
+          <p class="group-title" style="margin-bottom:12px;">Vérifications de contraste</p>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+            <div style="background:#1C3557;color:#fff;padding:12px 16px;border-radius:8px;font-size:14px;">
+              Blanc sur Navy — <strong>9.5:1 ✓ AAA</strong>
+            </div>
+            <div style="background:#0F1F35;color:#fff;padding:12px 16px;border-radius:8px;font-size:14px;">
+              Blanc sur Deep Navy — <strong>14:1 ✓ AAA</strong>
+            </div>
+            <div style="background:#1E7A52;color:#fff;padding:12px 16px;border-radius:8px;font-size:14px;">
+              Blanc sur Emerald — <strong>5.2:1 ✓ AA</strong>
+            </div>
+            <div style="background:#2ecc9b;color:#0F1F35;padding:12px 16px;border-radius:8px;font-size:14px;">
+              Navy Deep sur Vivid — <strong>8.1:1 ✓ AAA</strong>
+            </div>
+            <div style="background:#2ecc9b;color:#fff;padding:12px 16px;border-radius:8px;font-size:14px;opacity:.6;">
+              ⚠ Blanc sur Vivid — <strong>2.3:1 ✗ FAIL</strong>
+            </div>
+            <div style="background:#7C3AED;color:#fff;padding:12px 16px;border-radius:8px;font-size:14px;">
+              Blanc sur Violet — <strong>5.4:1 ✓ AA</strong>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ TYPOGRAPHIE ═══ -->
+      <section class="section" id="typographie">
+        <p class="section-label">Tokens</p>
+        <h2 class="section-title">Typographie</h2>
+
+        <div style="background:#fff;border-radius:var(--kalon-radius-lg);padding:32px;border:1px solid var(--kalon-color-border);">
+          <div class="type-row">
+            <span class="type-meta">display-xl · 72/76 · 700</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-display);font-size:72px;font-weight:700;color:var(--kalon-color-navy);line-height:76px;letter-spacing:-1px;">Le sport amateur</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">display-l · 56/60 · 700</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-display);font-size:56px;font-weight:700;color:var(--kalon-color-navy);line-height:60px;letter-spacing:-0.5px;">Mérite mieux</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">headline-l · 40/48 · 600</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-display);font-size:40px;font-weight:600;color:var(--kalon-color-navy);line-height:48px;">Nos offres pour les clubs</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">headline-m · 32/40 · 600</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-display);font-size:32px;font-weight:600;color:var(--kalon-color-navy);line-height:40px;">Partenaires stratégiques</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">headline-s · 24/32 · 600</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-display);font-size:24px;font-weight:600;color:var(--kalon-color-navy);line-height:32px;">Formations sur mesure</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">title-l · 20/28 · 600</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-body);font-size:20px;font-weight:600;color:var(--kalon-color-navy);line-height:28px;">Accompagnement personnalisé</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">body-l · 18/28 · 400</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-body);font-size:18px;font-weight:400;color:var(--kalon-color-text);line-height:28px;">Kalon Partners accompagne les clubs sportifs amateurs dans leur développement commercial.</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">body-m · 16/24 · 400</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-body);font-size:16px;font-weight:400;color:var(--kalon-color-text-muted);line-height:24px;">Nous mettons en relation clubs, entreprises et partenaires pour créer des synergies durables.</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">body-s · 14/20 · 400</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-body);font-size:14px;font-weight:400;color:var(--kalon-color-text-muted);line-height:20px;">Texte secondaire, métadonnées, source des statistiques. Ne pas descendre en dessous.</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">label-l · 14/20 · 500</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-body);font-size:14px;font-weight:500;color:var(--kalon-color-navy);line-height:20px;letter-spacing:0.5px;">Découvrir nos offres</div>
+          </div>
+          <div class="type-row">
+            <span class="type-meta">eyebrow · 11 · 600 · 1.5px</span>
+            <div class="type-sample" style="font-family:var(--kalon-font-body);font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--kalon-color-accent-green-vivid);">Nos solutions</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FORMES & OMBRES ═══ -->
+      <section class="section" id="formes">
+        <p class="section-label">Tokens</p>
+        <h2 class="section-title">Formes & Ombres</h2>
+
+        <div>
+          <p class="group-title">Border Radius</p>
+          <div class="radius-grid">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="radius-box" style="border-radius:0;"></div>
+              <span class="radius-label">none</span><span class="radius-value">0px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="radius-box" style="border-radius:4px;"></div>
+              <span class="radius-label">sm</span><span class="radius-value">4px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="radius-box" style="border-radius:8px;"></div>
+              <span class="radius-label">md</span><span class="radius-value">8px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="radius-box" style="border-radius:12px;"></div>
+              <span class="radius-label">lg</span><span class="radius-value">12px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="radius-box" style="border-radius:16px;"></div>
+              <span class="radius-label">xl</span><span class="radius-value">16px</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:6px;">
+              <div class="radius-box" style="border-radius:9999px;"></div>
+              <span class="radius-label">full</span><span class="radius-value">pill</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Élévation</p>
+          <div class="elevation-grid">
+            <div class="elevation-box" style="box-shadow:none;border:1px solid var(--kalon-color-border);">
+              <span>0</span><span class="elevation-sub">none</span>
+            </div>
+            <div class="elevation-box" style="box-shadow:var(--kalon-elevation-1);">
+              <span>1</span><span class="elevation-sub">Cartes</span>
+            </div>
+            <div class="elevation-box" style="box-shadow:var(--kalon-elevation-2);">
+              <span>2</span><span class="elevation-sub">Hover</span>
+            </div>
+            <div class="elevation-box" style="box-shadow:var(--kalon-elevation-3);">
+              <span>3</span><span class="elevation-sub">Modals</span>
+            </div>
+            <div class="elevation-box" style="box-shadow:var(--kalon-elevation-4);">
+              <span>4</span><span class="elevation-sub">Toasts</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ ESPACEMENT ═══ -->
+      <section class="section" id="espacement">
+        <p class="section-label">Tokens</p>
+        <h2 class="section-title">Espacement</h2>
+        <div class="spacing-grid">
+          <div class="spacing-item"><div class="spacing-bar" style="height:4px;"></div><span class="spacing-token">space.1</span><span class="spacing-val">4px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:8px;"></div><span class="spacing-token">space.2</span><span class="spacing-val">8px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:12px;"></div><span class="spacing-token">space.3</span><span class="spacing-val">12px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:16px;"></div><span class="spacing-token">space.4</span><span class="spacing-val">16px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:24px;"></div><span class="spacing-token">space.5</span><span class="spacing-val">24px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:32px;"></div><span class="spacing-token">space.6</span><span class="spacing-val">32px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:48px;"></div><span class="spacing-token">space.8</span><span class="spacing-val">48px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:64px;"></div><span class="spacing-token">space.10</span><span class="spacing-val">64px</span></div>
+          <div class="spacing-item"><div class="spacing-bar" style="height:80px;"></div><span class="spacing-token">space.12</span><span class="spacing-val">80px</span></div>
+        </div>
+      </section>
+
+      <!-- ═══ BOUTONS ═══ -->
+      <section class="section" id="boutons">
+        <p class="section-label">Composants</p>
+        <h2 class="section-title">Boutons</h2>
+
+        <div>
+          <p class="group-title">Sur fond clair</p>
+          <div class="row">
+            <button class="btn btn-navy">Filled Navy</button>
+            <button class="btn btn-emerald">Filled Emerald</button>
+            <button class="btn btn-outlined">Outlined</button>
+            <button class="btn btn-ghost">Ghost</button>
+            <button class="btn btn-navy" disabled>Disabled</button>
+          </div>
+        </div>
+
+        <div class="dark-bg">
+          <p class="group-title" style="color:rgba(255,255,255,.4);margin-bottom:16px;">Sur fond sombre</p>
+          <div class="row">
+            <button class="btn btn-vivid">Filled Vivid</button>
+            <button class="btn btn-outlined-white">Outlined White</button>
+            <button class="btn btn-ghost" style="color:#fff;">Ghost White</button>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Tailles</p>
+          <div class="row" style="align-items:center;">
+            <button class="btn btn-navy btn-sm">Petit</button>
+            <button class="btn btn-navy">Standard</button>
+            <button class="btn btn-navy btn-lg">Grand</button>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Avec icône</p>
+          <div class="row">
+            <button class="btn btn-navy">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8 6l4-4 4 4"/><path d="M12 2v13"/><path d="M20 21H4"/></svg>
+              Prendre rendez-vous
+            </button>
+            <button class="btn btn-emerald">
+              Découvrir nos offres
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+            </button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ CARTES ═══ -->
+      <section class="section" id="cartes">
+        <p class="section-label">Composants</p>
+        <h2 class="section-title">Cartes</h2>
+
+        <div>
+          <p class="group-title">Card Standard</p>
+          <div class="card-grid">
+            <div class="card">
+              <div class="card-title">Accompagnement clubs</div>
+              <p class="card-body">Nous aidons les clubs amateurs à structurer leur modèle économique et à développer leurs partenariats locaux.</p>
+              <div style="margin-top:16px;">
+                <a href="#" style="color:var(--kalon-color-accent-green);font-size:14px;font-weight:500;text-decoration:none;">Découvrir →</a>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Formations certifiantes</div>
+              <p class="card-body">Des programmes adaptés aux dirigeants de clubs, trésoriers et bénévoles engagés dans la gestion sportive.</p>
+              <div style="margin-top:16px;">
+                <a href="#" style="color:var(--kalon-color-accent-green);font-size:14px;font-weight:500;text-decoration:none;">Découvrir →</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Card Métrique</p>
+          <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(200px,1fr));">
+            <div class="card-metric">
+              <div class="card-metric-value">82%</div>
+              <div class="card-metric-label">des clubs en difficulté financière</div>
+              <div class="card-metric-source">Source : Cnosf, 2023</div>
+            </div>
+            <div class="card-metric">
+              <div class="card-metric-value">18M</div>
+              <div class="card-metric-label">de licenciés en France</div>
+              <div class="card-metric-source">Source : Injep, 2023</div>
+            </div>
+            <div class="card-metric">
+              <div class="card-metric-value">3×</div>
+              <div class="card-metric-label">plus de partenariats après 12 mois</div>
+              <div class="card-metric-source">Données internes Kalon</div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Card Verticale</p>
+          <div class="card-grid">
+            <div class="card" style="border-top:3px solid var(--kalon-color-vert);">
+              <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+                <div class="verticale-icon" style="background:rgba(46,204,155,.15);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#1E7A52" stroke-width="1.5" stroke-linecap="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+                </div>
+                <div>
+                  <span class="badge badge-vert">Associations</span>
+                  <div class="card-title" style="margin-top:6px;">Clubs sportifs</div>
+                </div>
+              </div>
+              <p class="card-body">Structurez vos partenariats et développez vos ressources propres durablement.</p>
+            </div>
+            <div class="card" style="border-top:3px solid var(--kalon-color-teal);">
+              <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+                <div class="verticale-icon" style="background:rgba(14,165,160,.15);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#0a8a86" stroke-width="1.5" stroke-linecap="round"><path d="M2 3h6a4 4 0 014 4v14a3 3 0 00-3-3H2z"/><path d="M22 3h-6a4 4 0 00-4 4v14a3 3 0 013-3h7z"/></svg>
+                </div>
+                <div>
+                  <span class="badge badge-teal">Formations</span>
+                  <div class="card-title" style="margin-top:6px;">Montée en compétences</div>
+                </div>
+              </div>
+              <p class="card-body">Programmes certifiants pour dirigeants, trésoriers et bénévoles actifs.</p>
+            </div>
+            <div class="card" style="border-top:3px solid var(--kalon-color-bleu);">
+              <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:12px;">
+                <div class="verticale-icon" style="background:rgba(77,163,255,.15);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#2f85dc" stroke-width="1.5" stroke-linecap="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16"/></svg>
+                </div>
+                <div>
+                  <span class="badge badge-bleu">Entreprises</span>
+                  <div class="card-title" style="margin-top:6px;">RSE & Sponsoring</div>
+                </div>
+              </div>
+              <p class="card-body">Engagez-vous localement avec des clubs qui partagent vos valeurs territoriales.</p>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Card Dark</p>
+          <div class="card-grid" style="grid-template-columns:repeat(auto-fill,minmax(320px,1fr));">
+            <div class="card-dark">
+              <div class="card-title">Innovation Sport</div>
+              <p class="card-body">Découvrez nos solutions technologiques pour moderniser la gestion de votre club.</p>
+              <div style="margin-top:20px;">
+                <button class="btn btn-vivid btn-sm">Explorer</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ BADGES & TAGS ═══ -->
+      <section class="section" id="badges">
+        <p class="section-label">Composants</p>
+        <h2 class="section-title">Badges & Tags</h2>
+
+        <div>
+          <p class="group-title">Badges de Verticale</p>
+          <div class="row">
+            <span class="badge badge-vert">Associations</span>
+            <span class="badge badge-teal">Formations</span>
+            <span class="badge badge-bleu">Entreprises</span>
+            <span class="badge badge-violet">Innovation</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Badges Sémantiques</p>
+          <div class="row">
+            <span class="badge badge-success">Succès</span>
+            <span class="badge badge-warning">Attention</span>
+            <span class="badge badge-error">Erreur</span>
+            <span class="badge badge-neutral">Neutre</span>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Tags / Chips</p>
+          <div class="row">
+            <span class="tag">Sport amateur</span>
+            <span class="tag active">Bretagne</span>
+            <span class="tag">Football</span>
+            <span class="tag">Rugby</span>
+            <span class="tag">Handball</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FORMULAIRES ═══ -->
+      <section class="section" id="formulaires">
+        <p class="section-label">Composants</p>
+        <h2 class="section-title">Formulaires</h2>
+
+        <div style="background:#fff;border-radius:var(--kalon-radius-lg);padding:32px;border:1px solid var(--kalon-color-border);max-width:640px;">
+          <div style="font-family:var(--kalon-font-display);font-size:24px;font-weight:600;color:var(--kalon-color-navy);margin-bottom:24px;">Prendre rendez-vous</div>
+          <div class="form-grid">
+            <div class="field">
+              <label class="field-label">Prénom</label>
+              <input class="input" type="text" placeholder="Marie" />
+            </div>
+            <div class="field">
+              <label class="field-label">Nom</label>
+              <input class="input" type="text" placeholder="Dupont" />
+            </div>
+            <div class="field">
+              <label class="field-label">Email</label>
+              <input class="input" type="email" placeholder="marie@club.fr" />
+            </div>
+            <div class="field">
+              <label class="field-label">Téléphone</label>
+              <input class="input" type="tel" placeholder="06 00 00 00 00" />
+            </div>
+          </div>
+          <div class="field" style="margin-top:16px;">
+            <label class="field-label">Email — état erreur</label>
+            <input class="input error" type="email" value="email-invalide" />
+            <span class="field-error">Format d'email invalide</span>
+          </div>
+          <div class="field" style="margin-top:16px;">
+            <label class="field-label">Message</label>
+            <textarea class="input" style="height:120px;padding-top:12px;resize:vertical;" placeholder="Décrivez votre projet…"></textarea>
+            <span class="field-helper">Maximum 500 caractères</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:12px;margin-top:20px;">
+            <input type="checkbox" id="cgu" style="width:20px;height:20px;accent-color:var(--kalon-color-navy);cursor:pointer;" />
+            <label for="cgu" style="font-size:14px;color:var(--kalon-color-text-muted);cursor:pointer;">J'accepte les <a href="#" style="color:var(--kalon-color-accent-green);">conditions générales</a></label>
+          </div>
+          <div style="margin-top:24px;">
+            <button class="btn btn-navy">Envoyer ma demande</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FEEDBACK ═══ -->
+      <section class="section" id="feedback">
+        <p class="section-label">Composants</p>
+        <h2 class="section-title">Feedback</h2>
+
+        <div>
+          <p class="group-title">Toasts / Notifications</p>
+          <div class="col">
+            <div class="toast toast-success">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"/></svg>
+              <span class="toast-msg">Votre demande a bien été envoyée.</span>
+            </div>
+            <div class="toast toast-error">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd"/></svg>
+              <span class="toast-msg">Une erreur est survenue. Veuillez réessayer.</span>
+            </div>
+            <div class="toast toast-info">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"/></svg>
+              <span class="toast-msg">Nouveau partenaire disponible dans votre région.</span>
+            </div>
+            <div class="toast toast-warning">
+              <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd"/></svg>
+              <span class="toast-msg">Votre session expire dans 5 minutes.</span>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Progress Bar</p>
+          <div class="col" style="gap:16px;max-width:480px;">
+            <div class="col" style="gap:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--kalon-color-text-muted);">
+                <span>Profil complété</span><span>72%</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill" style="width:72%;"></div></div>
+            </div>
+            <div class="col" style="gap:6px;">
+              <div style="display:flex;justify-content:space-between;font-size:12px;color:var(--kalon-color-text-muted);">
+                <span>Partenariats actifs</span><span>45%</span>
+              </div>
+              <div class="progress-track"><div class="progress-fill" style="width:45%;"></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Skeleton Loader</p>
+          <div class="card" style="max-width:360px;gap:12px;display:flex;flex-direction:column;">
+            <div class="skeleton" style="height:20px;width:60%;"></div>
+            <div class="skeleton" style="height:14px;width:100%;"></div>
+            <div class="skeleton" style="height:14px;width:80%;"></div>
+            <div class="skeleton" style="height:14px;width:90%;"></div>
+            <div style="display:flex;gap:8px;margin-top:4px;">
+              <div class="skeleton" style="height:36px;width:120px;border-radius:9999px;"></div>
+              <div class="skeleton" style="height:36px;width:100px;border-radius:9999px;"></div>
+            </div>
+          </div>
+        </div>
+
+        <div>
+          <p class="group-title">Spinner</p>
+          <div class="row" style="align-items:center;gap:24px;">
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <svg style="width:20px;height:20px;color:var(--kalon-color-accent-green);animation:spin 700ms linear infinite;" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle style="opacity:.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
+                <path style="opacity:.75;" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+              </svg>
+              <span style="font-size:11px;color:var(--kalon-color-text-muted);">sm</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <svg style="width:32px;height:32px;color:var(--kalon-color-accent-green);animation:spin 700ms linear infinite;" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle style="opacity:.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
+                <path style="opacity:.75;" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+              </svg>
+              <span style="font-size:11px;color:var(--kalon-color-text-muted);">md</span>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:center;gap:8px;">
+              <svg style="width:48px;height:48px;color:var(--kalon-color-accent-green);animation:spin 700ms linear infinite;" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+                <circle style="opacity:.25;" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="2.5"/>
+                <path style="opacity:.75;" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
+              </svg>
+              <span style="font-size:11px;color:var(--kalon-color-text-muted);">lg</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+</div>
+
+<style>
+  @keyframes spin { to { transform: rotate(360deg); } }
+</style>
+
+</body>
+</html>
