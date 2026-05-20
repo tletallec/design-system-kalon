@@ -74,10 +74,11 @@
   --kalon-leading-label-s:    14px;
 
   /* ─── Typography — Weights ────────────────────────────── */
-  --kalon-weight-regular: 400;
-  --kalon-weight-medium:  500;
-  --kalon-weight-semibold: 600;
-  --kalon-weight-bold:    700;
+  --kalon-weight-regular:   400;
+  --kalon-weight-medium:    500;
+  --kalon-weight-semibold:  600;
+  --kalon-weight-bold:      700;
+  --kalon-weight-extrabold: 800; /* Barlow Condensed display uniquement — jamais sur Inter */
 
   /* ─── Shape / Border Radius ───────────────────────────── */
   --kalon-radius-none:  0px;

@@ -234,6 +234,29 @@ Utilisé pour les verticales métier (Associations / Entreprises / Formations / 
 
 ---
 
+### Glass Card
+
+Carte translucide avec `backdrop-filter`. **Fond sombre uniquement** (sections `#0F1F35` ou `#1C3557`).
+
+**Variantes** : `.glass-card-green`, `.glass-card-teal`, `.glass-card-blue`, `.glass-card-violet` — ligne 2px de couleur en haut + ombre colorée au hover.
+
+| Property | Value |
+|----------|-------|
+| Background | `rgba(255 255 255 / .07)` → `.11` hover |
+| Border | `1px solid rgba(255 255 255 / .14)` |
+| Radius | `var(--radius-card)` — 16px |
+| Backdrop | `blur(14px) saturate(150%)` |
+| Shadow | `var(--shadow-base)` → `var(--shadow-strong)` hover |
+| Hover transform | `translateY(-3px)` |
+| Transition | 200ms `ease-out` |
+
+**Icône glass** : `.glass-icon` 44×44px, `radius.lg`, fond `var(--*-soft)`, bordure `var(--*-border)`.
+
+**Do:** Utiliser sur fond `#0F1F35` ou `#1C3557` uniquement.
+**Don't:** Utiliser sur fond blanc — le blur est invisible et la carte semble plate.
+
+---
+
 ### Dialog / Modal
 
 `radius.xl` (16px), `elevation.3`. Backdrop `rgb(15 31 53 / .6)` blur 4px. Max-width 560px, centré.

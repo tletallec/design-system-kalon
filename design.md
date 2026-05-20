@@ -93,6 +93,8 @@ font-family-body:    'Inter', system-ui, sans-serif;
 | Label M | Inter | 12px | 500 | 16px | 0.5px | Badges, metadata |
 | Label S | Inter | 11px | 600 | 14px | 0.8px | Surtitre, eyebrow text |
 
+> **Poids 800 (extrabold)** : utilisé sur les titres Display et Headline en Barlow Condensed uniquement (`--kalon-weight-extrabold`). Ne jamais appliquer 800 sur Inter — la police ne le supporte pas élégamment en dessous de 32px.
+
 ### Surtitre (Eyebrow)
 
 Style récurrent dans la communication Kalon : texte en petites majuscules, espacement large, couleur accent.
@@ -182,6 +184,23 @@ color: var(--color-accent-green-vivid);
 | `motion.ease-hover` | `cubic-bezier(0.2, 0, 0, 1)` | 150ms | Hover états |
 
 **Propriétés animées en priorité** : `opacity`, `transform`, `box-shadow`, `background-color`. Ne jamais animer `width` ou `height` directement.
+
+---
+
+## Glass System
+
+Couche visuelle pour les surfaces sur fond sombre (hero, sections navy/deep). Basé sur `backdrop-filter: blur`.
+
+| Token | Valeur | Usage |
+|-------|--------|-------|
+| `glass.bg` | `rgba(255 255 255 / .07)` | Fond de carte au repos |
+| `glass.bg-hover` | `rgba(255 255 255 / .11)` | Fond de carte au hover |
+| `glass.border` | `rgba(255 255 255 / .14)` | Bordure de carte glass |
+| `glass.inset` | `rgba(255 255 255 / .16)` | Bordure haute inset (highlight) |
+
+**Paramètres backdrop-filter** : `blur(14px) saturate(150%)`. Ne jamais utiliser le glass sur fond clair — pas d'effet visible et coût GPU inutile.
+
+**Texture de grain** : `body::after` applique un bruit SVG fractal à 3% d'opacité sur toute la page — subtil, ne pas augmenter au-delà de `opacity: 0.04`.
 
 ---
 

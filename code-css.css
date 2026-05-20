@@ -12,43 +12,51 @@
 
 :root {
 
+  /* ═══════════════════════════════════════════════════════════
+     BRIDGE → tokens.css
+     Charger tokens/tokens.css avant ce fichier dans le thème.
+     Chaque variable utilise var(--kalon-*, fallback) :
+     si tokens.css est chargé, la valeur est centralisée ;
+     sinon le fallback hardcodé prend le relais.
+     ═══════════════════════════════════════════════════════════ */
+
   /* ─────────────────────────────────────────────────────────
-     PRIMITIVES RGB
-     Usage : rgba(var(--c-green-glow), 0.15)
+     PRIMITIVES RGB — ne peuvent pas utiliser var() car ils
+     sont consommés dans rgba(var(--c-x), opacité)
      ───────────────────────────────────────────────────────── */
-  --c-navy:        15, 31, 53;
-  --c-navy-brand:  28, 53, 87;
-  --c-green:       30, 122, 82;
-  --c-green-glow:  46, 204, 155;
-  --c-teal:        14, 165, 160;
-  --c-blue:        77, 163, 255;
-  --c-violet:      124, 58, 237;
+  --c-navy:        15, 31, 53;    /* = kalon.color.navy-deep  */
+  --c-navy-brand:  28, 53, 87;    /* = kalon.color.navy       */
+  --c-green:       30, 122, 82;   /* = kalon.color.accent-green */
+  --c-green-glow:  46, 204, 155;  /* = kalon.color.accent-green-vivid */
+  --c-teal:        14, 165, 160;  /* = kalon.color.teal       */
+  --c-blue:        77, 163, 255;  /* = kalon.color.bleu       */
+  --c-violet:      124, 58, 237;  /* = kalon.color.violet     */
 
   /* ─────────────────────────────────────────────────────────
      FONDS D'ENVIRONNEMENT
      ───────────────────────────────────────────────────────── */
-  --bg-dark:   #0F1F35;
-  --bg-navy:   #1C3557;
-  --bg-green:  #0a3d2e;
-  --bg-light:  #FFFFFF;
-  --bg-soft:   #F4F7FA;  /* remplace bg-sand — aligné sur surface-soft du design system */
-  --bg-grey:   #EFF3F7;
+  --bg-dark:   var(--kalon-color-navy-deep,    #0F1F35);
+  --bg-navy:   var(--kalon-color-navy,         #1C3557);
+  --bg-green:  #0a3d2e; /* fond vert foncé — pas de token kalon équivalent */
+  --bg-light:  var(--kalon-color-surface,      #FFFFFF);
+  --bg-soft:   var(--kalon-color-surface-soft, #F4F7FA);
+  --bg-grey:   #EFF3F7; /* légèrement plus froid que bg-soft — sections alternées */
 
   /* ─────────────────────────────────────────────────────────
      ACCENTS SUR FOND SOMBRE
      ───────────────────────────────────────────────────────── */
-  --accent-green:  #2ecc9b;
-  --accent-teal:   #0ea5a0;
-  --accent-blue:   #4DA3FF;
-  --accent-violet: #7C3AED;
+  --accent-green:  var(--kalon-color-accent-green-vivid, #2ecc9b);
+  --accent-teal:   var(--kalon-color-teal,               #0ea5a0);
+  --accent-blue:   var(--kalon-color-bleu,               #4DA3FF);
+  --accent-violet: var(--kalon-color-violet,             #7C3AED);
 
   /* ─────────────────────────────────────────────────────────
      ACCENTS SUR FOND CLAIR
      ───────────────────────────────────────────────────────── */
-  --accent-green-dark:  #1E7A52;
-  --accent-teal-dark:   #0a8a86;
-  --accent-blue-dark:   #2f85dc;
-  --accent-violet-dark: #6D28D9;
+  --accent-green-dark:  var(--kalon-color-accent-green,  #1E7A52);
+  --accent-teal-dark:   var(--kalon-color-teal-dark,     #0a8a86);
+  --accent-blue-dark:   var(--kalon-color-bleu-dark,     #2f85dc);
+  --accent-violet-dark: var(--kalon-color-violet-dark,   #6D28D9);
 
   /* ─────────────────────────────────────────────────────────
      VARIANTS COULEUR (soft / border / glow / muted)
@@ -88,7 +96,8 @@
   --text-muted-on-light: rgba(15, 31, 53, 0.55);
 
   /* ─────────────────────────────────────────────────────────
-     GLASS SYSTEM
+     GLASS SYSTEM — surfaces translucides sur fond sombre
+     Voir design-components.md > Containment > Glass Card
      ───────────────────────────────────────────────────────── */
   --glass-bg:       rgba(255, 255, 255, 0.07);
   --glass-bg-hover: rgba(255, 255, 255, 0.11);
@@ -96,7 +105,7 @@
   --glass-inset:    rgba(255, 255, 255, 0.16);
 
   /* ─────────────────────────────────────────────────────────
-     OMBRES
+     OMBRES — basées sur kalon.color.navy-deep (15 31 53)
      ───────────────────────────────────────────────────────── */
   --shadow-sm:     0 2px 8px rgb(15 31 53 / .20);
   --shadow-base:   0 10px 30px rgb(15 31 53 / .35);
@@ -106,9 +115,9 @@
   /* ─────────────────────────────────────────────────────────
      TYPOGRAPHIE
      ───────────────────────────────────────────────────────── */
-  --font-display: 'Barlow Condensed', system-ui, sans-serif;
-  --font-body:    'Inter', system-ui, sans-serif;
-  --font-serif:   'Playfair Display', Georgia, serif; /* titres hero uniquement */
+  --font-display: var(--kalon-font-display, 'Barlow Condensed', system-ui, sans-serif);
+  --font-body:    var(--kalon-font-body,    'Inter', system-ui, sans-serif);
+  --font-serif:   'Playfair Display', Georgia, serif; /* serif-highlight dans les titres uniquement */
 
   --text-hero:     clamp(34px, 4.5vw, 64px);
   --text-section:  clamp(28px, 3.5vw, 48px);
@@ -118,10 +127,10 @@
   --text-small:    14px;
   --text-tag:      11px;
 
-  --font-normal:    400;
-  --font-medium:    500;
-  --font-semibold:  600;
-  --font-extrabold: 800;
+  --font-normal:    var(--kalon-weight-regular,    400);
+  --font-medium:    var(--kalon-weight-medium,     500);
+  --font-semibold:  var(--kalon-weight-semibold,   600);
+  --font-extrabold: var(--kalon-weight-extrabold,  800); /* Barlow Condensed display uniquement */
 
   --leading-tight:   1.1;
   --leading-snug:    1.2;
@@ -129,51 +138,51 @@
   --leading-relaxed: 1.7;
 
   /* ─────────────────────────────────────────────────────────
-     ESPACEMENTS
+     ESPACEMENTS — alignés sur kalon.space.*
      ───────────────────────────────────────────────────────── */
-  --space-2xs: 4px;
-  --space-xs:  8px;
-  --space-sm:  12px;
-  --space-md:  16px;
-  --space-lg:  24px;
-  --space-xl:  32px;
-  --space-2xl: 48px;
-  --space-3xl: 64px;
-  --space-4xl: 96px;
+  --space-2xs: var(--kalon-space-1,  4px);
+  --space-xs:  var(--kalon-space-2,  8px);
+  --space-sm:  var(--kalon-space-3,  12px);
+  --space-md:  var(--kalon-space-4,  16px);
+  --space-lg:  var(--kalon-space-5,  24px);
+  --space-xl:  var(--kalon-space-6,  32px);
+  --space-2xl: var(--kalon-space-8,  48px);
+  --space-3xl: var(--kalon-space-10, 64px);
+  --space-4xl: var(--kalon-space-12, 80px); /* anciennement 96px, aligné sur space.12 */
 
   /* ─────────────────────────────────────────────────────────
-     RAYONS
+     RAYONS — alignés sur kalon.radius.*
      ───────────────────────────────────────────────────────── */
-  --radius-button: 8px;
-  --radius-card:   16px;
-  --radius-navy:   16px;
-  --radius-icon:   12px;
-  --radius-input:  8px;
-  --radius-pill:   9999px;
+  --radius-button: var(--kalon-radius-md,   8px);
+  --radius-card:   var(--kalon-radius-xl,   16px);
+  --radius-navy:   var(--kalon-radius-xl,   16px);
+  --radius-icon:   var(--kalon-radius-lg,   12px);
+  --radius-input:  var(--kalon-radius-md,   8px);
+  --radius-pill:   var(--kalon-radius-full, 9999px);
 
   /* ─────────────────────────────────────────────────────────
-     TRANSITIONS
+     TRANSITIONS — alignées sur kalon.motion.*
      ───────────────────────────────────────────────────────── */
-  --ease-out:    cubic-bezier(0.23, 1, 0.32, 1);
-  --ease-in-out: cubic-bezier(0.77, 0, 0.175, 1);
-  --t-fast:   150ms;
-  --t-base:   200ms;
-  --t-slow:   300ms;
+  --ease-out:    var(--kalon-ease-enter,    cubic-bezier(0.23, 1, 0.32, 1));
+  --ease-in-out: var(--kalon-ease-standard, cubic-bezier(0.77, 0, 0.175, 1));
+  --t-fast:      var(--kalon-duration-hover,    150ms);
+  --t-base:      var(--kalon-duration-enter,    200ms);
+  --t-slow:      var(--kalon-duration-standard, 300ms);
 
   /* ─────────────────────────────────────────────────────────
      NAVY CONTAINER
      ───────────────────────────────────────────────────────── */
-  --navy-radius:  16px;
-  --navy-padding: 48px;
+  --navy-radius:  var(--kalon-radius-xl,  16px);
+  --navy-padding: var(--kalon-space-8,    48px);
   --navy-border:  1px solid rgba(255, 255, 255, 0.08);
-  --navy-shadow:  0 8px 30px rgba(0, 0, 0, 0.30),
+  --navy-shadow:  0 8px 30px rgb(15 31 53 / .30),
                   inset 0 1px 0 rgba(255, 255, 255, 0.06);
 
   /* ─────────────────────────────────────────────────────────
      SECTION GAPS
      ───────────────────────────────────────────────────────── */
-  --section-gap:    48px;
-  --section-gap-lg: 64px;
+  --section-gap:    var(--kalon-space-8,  48px);
+  --section-gap-lg: var(--kalon-space-10, 64px);
 
 }
 
