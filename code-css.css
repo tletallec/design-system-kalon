@@ -3049,7 +3049,20 @@ body::after {
 /* =============================================================================
    SECTION FORMATIONS — kp-asso-formations
    Fond : --bg-dark  |  Axe couleur : teal (formations)
+   Classes Elementor :
+     Section          → kp-asso-formations
+     Ligne badge      → kp-asso-formation-header
+     H2 titre         → kp-asso-formations-title
+     Sous-titre       → kp-asso-formations-subtitle
+     Widget Tabs      → kp-asso-formations-tabs
+     Chaque panel     → kp-asso-formations-panel
+     H3 pilier        → kp-asso-formations-pillar-title
+     Desc pilier      → kp-asso-formations-pillar-desc
+     Liste items      → kp-asso-formations-pillar-list
+     Bouton CTA       → kp-asso-formations-cta
    ============================================================================= */
+
+/* ── Section wrapper ── */
 
 .kp-asso-formations {
   background: var(--bg-dark) !important;
@@ -3058,7 +3071,6 @@ body::after {
   overflow: hidden !important;
 }
 
-/* Glow décoratif teal */
 .kp-asso-formations::before {
   content: "" !important;
   position: absolute !important;
@@ -3077,7 +3089,7 @@ body::after {
   gap: var(--space-lg) !important;
 }
 
-/* ── Header glass (badge Qualiopi / OPCO) ── */
+/* ── Badge Qualiopi / OPCO ── */
 
 .kp-asso-formation-header {
   flex-direction: row !important;
@@ -3111,10 +3123,11 @@ body::after {
 
 .kp-asso-formation-header .elementor-widget-text-editor p {
   margin: 0 !important;
+  font-family: var(--font-body) !important;
   font-size: var(--text-small) !important;
-  color: var(--text-muted) !important;
   font-weight: var(--font-medium) !important;
   line-height: var(--leading-normal) !important;
+  color: var(--text-muted) !important;
   position: relative !important;
   padding-left: var(--space-md) !important;
 }
@@ -3131,17 +3144,10 @@ body::after {
   margin-top: var(--space-2xs) !important;
 }
 
-@media (max-width: 767px) {
-  .kp-asso-formation-header {
-    flex-direction: column !important;
-    text-align: center !important;
-    max-width: 100% !important;
-  }
-}
-
-/* ── Titre + sous-titre ── */
+/* ── Titre principal ── */
 
 .kp-asso-formations-title .elementor-heading-title {
+  font-family: var(--font-display) !important;
   font-size: var(--text-section) !important;
   font-weight: var(--font-extrabold) !important;
   line-height: var(--leading-snug) !important;
@@ -3150,6 +3156,8 @@ body::after {
   text-align: center !important;
   max-width: 800px !important;
   margin: 0 auto !important;
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
 }
 
 .kp-asso-formations-title em,
@@ -3163,7 +3171,10 @@ body::after {
   -webkit-text-fill-color: transparent !important;
 }
 
+/* ── Sous-titre ── */
+
 .kp-asso-formations-subtitle p {
+  font-family: var(--font-body) !important;
   font-size: var(--text-subtitle) !important;
   line-height: var(--leading-relaxed) !important;
   color: var(--text-muted) !important;
@@ -3172,7 +3183,7 @@ body::after {
   margin: 0 auto !important;
 }
 
-/* ── Tabs — pills horizontaux ── */
+/* ── Navigation tabs — pills horizontaux ── */
 
 .kp-asso-formations-tabs {
   width: 100% !important;
@@ -3199,9 +3210,9 @@ body::after {
   border: none !important;
   padding: 10px 22px !important;
   border-radius: 8px !important;
+  font-family: var(--font-body) !important;
   font-size: var(--text-small) !important;
   font-weight: var(--font-semibold) !important;
-  font-family: inherit !important;
   color: var(--text-muted) !important;
   cursor: pointer !important;
   transition: all var(--t-base) var(--ease-out) !important;
@@ -3219,32 +3230,29 @@ body::after {
   background: var(--glass-bg-hover) !important;
 }
 
+/* Onglet actif — couleur par index */
 .kp-asso-formations-tabs .e-n-tab-title[aria-selected="true"] .e-n-tab-title-text {
   color: #fff !important;
 }
 
-/* Active — teal par défaut, puis couleur par onglet */
 .kp-asso-formations-tabs .e-n-tab-title[aria-selected="true"][data-tab-index="1"] {
   background: rgba(var(--c-teal), 0.75) !important;
   border: 1px solid var(--teal-border) !important;
   color: #fff !important;
   box-shadow: 0 4px 16px var(--teal-glow) !important;
 }
-
 .kp-asso-formations-tabs .e-n-tab-title[aria-selected="true"][data-tab-index="2"] {
   background: rgba(var(--c-teal), 0.60) !important;
   border: 1px solid var(--teal-border) !important;
   color: #fff !important;
   box-shadow: 0 4px 16px var(--teal-glow) !important;
 }
-
 .kp-asso-formations-tabs .e-n-tab-title[aria-selected="true"][data-tab-index="3"] {
   background: rgba(var(--c-blue), 0.65) !important;
   border: 1px solid var(--blue-border) !important;
   color: #fff !important;
   box-shadow: 0 4px 16px var(--blue-glow) !important;
 }
-
 .kp-asso-formations-tabs .e-n-tab-title[aria-selected="true"][data-tab-index="4"] {
   background: rgba(var(--c-green-glow), 0.60) !important;
   border: 1px solid var(--green-border) !important;
@@ -3274,11 +3282,8 @@ body::after {
   width: 100% !important;
 }
 
-/* Barre colorée top par onglet */
-.kp-asso-formations-panel[data-tab-index="1"]::before,
-.kp-asso-formations-panel[data-tab-index="2"]::before,
-.kp-asso-formations-panel[data-tab-index="3"]::before,
-.kp-asso-formations-panel[data-tab-index="4"]::before {
+/* Bordure colorée en haut selon l'onglet */
+.kp-asso-formations-panel[data-tab-index]::before {
   content: "" !important;
   position: absolute !important;
   top: 0 !important;
@@ -3305,24 +3310,34 @@ body::after {
   box-shadow: 0 0 16px var(--green-glow) !important;
 }
 
-/* Teinte fond par panel */
-.kp-asso-formations-panel[data-tab-index="1"] { border-color: var(--teal-border) !important; }
+/* Couleur de bordure du panel selon l'onglet */
+.kp-asso-formations-panel[data-tab-index="1"],
 .kp-asso-formations-panel[data-tab-index="2"] { border-color: var(--teal-border) !important; }
 .kp-asso-formations-panel[data-tab-index="3"] { border-color: var(--blue-border) !important; }
 .kp-asso-formations-panel[data-tab-index="4"] { border-color: var(--green-border) !important; }
 
-/* ── Pillar title + desc ── */
+/* ── Titre du pilier (widget heading + e-heading-base) ── */
 
-.kp-asso-formations-pillar-title {
+.kp-asso-formations-pillar-title .elementor-heading-title,
+.kp-asso-formations-panel h3.e-heading-base,
+#kp-asso-formations-pillar-title {
+  font-family: var(--font-display) !important;
   font-size: 22px !important;
   font-weight: var(--font-extrabold) !important;
   line-height: var(--leading-snug) !important;
   letter-spacing: -0.02em !important;
   color: var(--text-primary) !important;
   margin: 0 !important;
+  background: none !important;
+  -webkit-text-fill-color: unset !important;
 }
 
-.kp-asso-formations-pillar-desc {
+/* ── Description du pilier (widget text + e-paragraph-base) ── */
+
+.kp-asso-formations-pillar-desc p,
+.kp-asso-formations-panel p.e-paragraph-base,
+#kp-asso-formations-pillar-desc {
+  font-family: var(--font-body) !important;
   font-size: var(--text-body) !important;
   line-height: var(--leading-relaxed) !important;
   color: var(--text-muted) !important;
@@ -3330,7 +3345,7 @@ body::after {
   max-width: 680px !important;
 }
 
-/* ── Pillar list (chips) ── */
+/* ── Liste formations (chips) ── */
 
 .kp-asso-formations-pillar-list {
   margin-top: var(--space-sm) !important;
@@ -3370,43 +3385,64 @@ body::after {
 .kp-asso-formations-pillar-list .elementor-icon-list-icon svg {
   width: 14px !important;
   height: 14px !important;
+  fill: var(--accent-teal) !important;
 }
 
 .kp-asso-formations-pillar-list .elementor-icon-list-text {
+  font-family: var(--font-body) !important;
   font-size: var(--text-small) !important;
-  color: var(--text-primary) !important;
   font-weight: var(--font-medium) !important;
   line-height: var(--leading-normal) !important;
+  color: var(--text-primary) !important;
 }
 
-/* Couleur icône + hover border par panel */
-.kp-asso-formations-panel[data-tab-index="1"] .kp-asso-formations-pillar-list .elementor-icon-list-icon svg,
-.kp-asso-formations-panel[data-tab-index="2"] .kp-asso-formations-pillar-list .elementor-icon-list-icon svg { fill: var(--accent-teal) !important; }
-.kp-asso-formations-panel[data-tab-index="3"] .kp-asso-formations-pillar-list .elementor-icon-list-icon svg { fill: var(--accent-teal) !important; }
-.kp-asso-formations-panel[data-tab-index="4"] .kp-asso-formations-pillar-list .elementor-icon-list-icon svg { fill: var(--accent-teal) !important; }
+/* Couleur icône + bordure hover par panel */
+.kp-asso-formations-panel[data-tab-index="3"] .kp-asso-formations-pillar-list .elementor-icon-list-icon svg {
+  fill: var(--accent-blue) !important;
+}
+.kp-asso-formations-panel[data-tab-index="4"] .kp-asso-formations-pillar-list .elementor-icon-list-icon svg {
+  fill: var(--accent-green) !important;
+}
 
 .kp-asso-formations-panel[data-tab-index="1"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover,
-.kp-asso-formations-panel[data-tab-index="2"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover { border-color: var(--teal-border) !important; }
-.kp-asso-formations-panel[data-tab-index="3"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover { border-color: var(--teal-border) !important; }
-.kp-asso-formations-panel[data-tab-index="4"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover { border-color: var(--teal-border) !important; }
+.kp-asso-formations-panel[data-tab-index="2"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover {
+  border-color: var(--teal-border) !important;
+}
+.kp-asso-formations-panel[data-tab-index="3"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover {
+  border-color: var(--blue-border) !important;
+}
+.kp-asso-formations-panel[data-tab-index="4"] .kp-asso-formations-pillar-list .elementor-icon-list-item:hover {
+  border-color: var(--green-border) !important;
+}
 
-/* ── CTA final — teal sur fond sombre ── */
+/* ── Bouton CTA final ── */
 
-.kp-asso-formations-cta .elementor-button {
+.kp-asso-formations-cta .elementor-button,
+.kp-asso-formations-cta a.elementor-button {
   background: var(--accent-teal) !important;
   color: #fff !important;
   border: none !important;
   border-radius: var(--radius-button) !important;
   padding: 16px 32px !important;
+  font-family: var(--font-display) !important;
   font-size: var(--text-body) !important;
   font-weight: var(--font-semibold) !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.4px !important;
   box-shadow: 0 10px 30px var(--teal-glow) !important;
-  transition: transform var(--t-base) var(--ease-out), box-shadow var(--t-base) var(--ease-out) !important;
+  transition: transform var(--t-base) var(--ease-out),
+              box-shadow var(--t-base) var(--ease-out) !important;
 }
 
-.kp-asso-formations-cta .elementor-button:hover {
+.kp-asso-formations-cta .elementor-button:hover,
+.kp-asso-formations-cta a.elementor-button:hover {
   transform: translateY(-2px) !important;
   box-shadow: 0 18px 50px var(--teal-glow) !important;
+}
+
+.kp-asso-formations-cta .elementor-button-text,
+.kp-asso-formations-cta .elementor-button-content-wrapper {
+  color: #fff !important;
 }
 
 /* ── Responsive ── */
@@ -3420,6 +3456,11 @@ body::after {
 @media (max-width: 767px) {
   .kp-asso-formations {
     padding: var(--space-3xl) var(--space-md) !important;
+  }
+  .kp-asso-formation-header {
+    flex-direction: column !important;
+    text-align: center !important;
+    max-width: 100% !important;
   }
   .kp-asso-formations-tabs .e-n-tabs-heading {
     width: 100% !important;
